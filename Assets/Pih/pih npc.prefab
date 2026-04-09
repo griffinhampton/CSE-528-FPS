@@ -300,6 +300,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6687216428795220714, guid: d473941d6b1279347be8555c41d8e907, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6966532497844833536, guid: d473941d6b1279347be8555c41d8e907, type: 3}
       propertyPath: m_YMotion
       value: 1
@@ -463,10 +467,10 @@ PrefabInstance:
       addedObject: {fileID: -721733982960396192}
     - targetCorrespondingSourceObject: {fileID: 8348528451162414471, guid: d473941d6b1279347be8555c41d8e907, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -7310672634979747080}
+      addedObject: {fileID: 453174856453596417}
     - targetCorrespondingSourceObject: {fileID: 8348528451162414471, guid: d473941d6b1279347be8555c41d8e907, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 453174856453596417}
+      addedObject: {fileID: 982183494007725886}
     - targetCorrespondingSourceObject: {fileID: 2102978214548724161, guid: d473941d6b1279347be8555c41d8e907, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8910703091563980032}
@@ -495,20 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollisionRealDetector
   targetTag: Player
   logOnlyOnce: 0
-  liveAndLetDie: {fileID: 0}
+  liveAndLetDie: {fileID: 8910703091563980032}
   callDeathOnHit: 1
---- !u!114 &-7310672634979747080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238252768548940151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb20ed5db47f98d42be427fdc006a9f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
 --- !u!136 &453174856453596417
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -524,7 +516,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -532,6 +524,44 @@ CapsuleCollider:
   m_Height: 1.6760929
   m_Direction: 2
   m_Center: {x: 0, y: 0.38306373, z: 0.14010096}
+--- !u!114 &982183494007725886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238252768548940151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb20ed5db47f98d42be427fdc006a9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  randomizeArchetypeOnSpawn: 1
+  archetype: 0
+  randomArchetypes: 01000000000000000200000003000000
+  tintRenderersByArchetype: 1
+  renderersToTint: []
+  moveSpeed: 5
+  turnSpeedDegreesPerSecond: 540
+  keepUpright: 1
+  playerTag: Player
+  visionDistance: 100
+  visionSphereRadius: 20
+  visionOriginHeight: 1
+  visionMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  latchOnFirstSight: 1
+  spawnPathWaypoints: []
+  waypointReachDistance: 0.5
+  rotateEveryFiveSecondsPreArena: 1
+  arenaTag: Arena
+  arenaCenter: {fileID: 0}
+--- !u!54 &3466068042429834778 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6687216428795220714, guid: d473941d6b1279347be8555c41d8e907, type: 3}
+  m_PrefabInstance: {fileID: 7841947191523669232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &6160683295391199329 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4155438983097762961, guid: d473941d6b1279347be8555c41d8e907, type: 3}
@@ -554,4 +584,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac0355b858ba334780189e53bfb1830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LiveAndLetDie
-  ragdollRoot: {fileID: 0}
+  ragdollRoot: {fileID: 8925321299129172455}
+  excludeRigidbody: {fileID: 3466068042429834778}
+  enableRagdollCollidersWhileAlive: 0
+  aliveColliders:
+  - {fileID: 453174856453596417}
+  disableRagdollJointsWhileAlive: 1
+--- !u!4 &8925321299129172455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1659907428553159959, guid: d473941d6b1279347be8555c41d8e907, type: 3}
+  m_PrefabInstance: {fileID: 7841947191523669232}
+  m_PrefabAsset: {fileID: 0}
