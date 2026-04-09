@@ -4041,7 +4041,7 @@ MonoBehaviour:
   showCenterDot: 1
   dotSizePixels: 20
   dotColor: {r: 1, g: 0, b: 0, a: 1}
-  canvas: {fileID: 0}
+  canvas: {fileID: 2001580213}
 --- !u!1 &1961416101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4426,6 +4426,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1810051010}
   - {fileID: 249937779}
   - {fileID: 1926079774}
   - {fileID: 204992248}
@@ -4440,4 +4441,3 @@ SceneRoots:
   - {fileID: 1177503392}
   - {fileID: 1329011871}
   - {fileID: 2001580214}
-  - {fileID: 1810051010}

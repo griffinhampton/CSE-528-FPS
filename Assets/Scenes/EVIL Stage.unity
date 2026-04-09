@@ -4098,9 +4098,9 @@ MonoBehaviour:
   lockCursor: 1
   respectPauseMenu: 1
   showCenterDot: 1
-  dotSizePixels: 4
+  dotSizePixels: 20
   dotColor: {r: 1, g: 0, b: 0, a: 1}
-  canvas: {fileID: 0}
+  canvas: {fileID: 632907259}
 --- !u!1 &1961416101
 GameObject:
   m_ObjectHideFlags: 0
