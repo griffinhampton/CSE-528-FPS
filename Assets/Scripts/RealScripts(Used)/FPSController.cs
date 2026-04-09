@@ -16,6 +16,14 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 2.0f;
     [SerializeField] private float upDownRange = 90.0f;
 
+    [Header("Health")]
+    [Tooltip("Damage the player takes when touching an alive pig.")]
+    [Min(0)]
+    [SerializeField] private int pigTouchDamage = 1;
+
+    [Tooltip("If true, touching an alive pig will kill it (ragdoll) and apply damage to the player.")]
+    [SerializeField] private bool killPigAndDamageOnTouch = true;
+
     private CharacterController characterController;
     private Camera mainCamera;
     private PlayInputHandler inputHandler;
@@ -33,10 +41,30 @@ public class FPSController : MonoBehaviour
     private void Start()
     {
         inputHandler = PlayInputHandler.Instance;
+
+        if (GetComponent<PlayerFootstepAudio>() == null)
+        {
+            gameObject.AddComponent<PlayerFootstepAudio>();
+        }
     }
 
     private void Update()
     {
+        if (inputHandler == null)
+        {
+            inputHandler = PlayInputHandler.Instance;
+        }
+
+        if (Time.timeScale == 0f)
+        {
+            if (inputHandler != null)
+            {
+                inputHandler.ResetJump();
+            }
+            return;
+        }
+
+        if (inputHandler == null) return;
         HandleMovement();
         HandleRotation();
     }
@@ -85,6 +113,37 @@ public class FPSController : MonoBehaviour
         verticalRotation -= inputHandler.LookInput.y * mouseSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
         mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0,0);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!killPigAndDamageOnTouch) return;
+        if (hit == null) return;
+        HandlePigTouch(hit.collider);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!killPigAndDamageOnTouch) return;
+        HandlePigTouch(other);
+    }
+
+    private void HandlePigTouch(Collider other)
+    {
+        if (other == null) return;
+
+        EnemyAI pigAI = other.GetComponentInParent<EnemyAI>();
+        if (pigAI == null) return;
+
+        LiveAndLetDie liveAndLetDie = pigAI.GetComponent<LiveAndLetDie>();
+        if (liveAndLetDie == null) liveAndLetDie = pigAI.GetComponentInChildren<LiveAndLetDie>(true);
+        if (liveAndLetDie == null) liveAndLetDie = pigAI.GetComponentInParent<LiveAndLetDie>();
+
+        if (liveAndLetDie != null && !liveAndLetDie.IsDead)
+        {
+            liveAndLetDie.Death();
+            PlayerHealth.DamagePlayer(pigTouchDamage, source: pigAI.gameObject);
+        }
     }
 
 }

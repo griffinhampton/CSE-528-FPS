@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: 09550faef115e2043b1d5e3149d5c08a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2991569813404420829
+    second: plinkohorse_0
+  - first:
+      213: 7736839253154211380
+    second: plinkohorse_1
+  - first:
+      213: 995488371005151105
+    second: plinkohorse_2
+  - first:
+      213: -7127436225431147246
+    second: plinkohorse_3
+  - first:
+      213: 5221254274681231566
+    second: plinkohorse_4
+  - first:
+      213: 9172772215339786638
+    second: plinkohorse_5
+  - first:
+      213: 5178130099436640723
+    second: plinkohorse_6
+  - first:
+      213: -8234131602994785377
+    second: plinkohorse_7
+  - first:
+      213: 3120492476708370275
+    second: plinkohorse_8
+  - first:
+      213: 1266247770181129773
+    second: plinkohorse_9
+  - first:
+      213: -6706307488764434088
+    second: plinkohorse_10
+  - first:
+      213: -3797549242168795254
+    second: plinkohorse_11
+  - first:
+      213: 2185885907235017242
+    second: plinkohorse_12
+  - first:
+      213: -8059087121877947535
+    second: plinkohorse_13
+  - first:
+      213: 2590277956031042154
+    second: plinkohorse_14
+  - first:
+      213: 3859373491785877686
+    second: plinkohorse_15
+  - first:
+      213: 2618441874115780952
+    second: plinkohorse_16
+  - first:
+      213: -1117583315712438513
+    second: plinkohorse_17
+  - first:
+      213: 7085713749743312568
+    second: plinkohorse_18
+  - first:
+      213: -9002301435277219701
+    second: plinkohorse_19
+  - first:
+      213: 5573331245008980728
+    second: plinkohorse_20
+  - first:
+      213: -2771724890319474428
+    second: plinkohorse_21
+  - first:
+      213: -6446492586442782057
+    second: plinkohorse_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: plinkohorse_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 365
+        width: 61
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda80c035e0348920800000000000000
+      internalID: 2991569813404420829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 365
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4362e882f46ce5b60800000000000000
+      internalID: 7736839253154211380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_2
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 365
+        width: 49
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1875bcb266fa0dd00800000000000000
+      internalID: 995488371005151105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_3
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 365
+        width: 53
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21dece70482461d90800000000000000
+      internalID: -7127436225431147246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_4
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 365
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec85d54791f957840800000000000000
+      internalID: 5221254274681231566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_5
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 283
+        width: 59
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81a6ecfabb3c4f70800000000000000
+      internalID: 9172772215339786638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_6
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 283
+        width: 51
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d9dda9f3e96cd740800000000000000
+      internalID: 5178130099436640723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_7
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 283
+        width: 50
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f939da1feec7abd80800000000000000
+      internalID: -8234131602994785377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_8
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 283
+        width: 56
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3673b7edf573e4b20800000000000000
+      internalID: 3120492476708370275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 61
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26d64b53ad929110800000000000000
+      internalID: 1266247770181129773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 200
+        width: 54
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85967a9ded86ee2a0800000000000000
+      internalID: -6706307488764434088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_11
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 200
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f9973a5156c4bc0800000000000000
+      internalID: -3797549242168795254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_12
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 200
+        width: 53
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12964cb6a3d55e10800000000000000
+      internalID: 2185885907235017242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_13
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 200
+        width: 59
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17b2a8626fe582090800000000000000
+      internalID: -8059087121877947535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_14
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 112
+        width: 59
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6251ceb31482f320800000000000000
+      internalID: 2590277956031042154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_15
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 112
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8c4713ebf3f8530800000000000000
+      internalID: 3859373491785877686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_16
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 112
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851edabe203965420800000000000000
+      internalID: 2618441874115780952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_17
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 112
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0f8e0445eb8d70f0800000000000000
+      internalID: -1117583315712438513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 61
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8be1d891d13855260800000000000000
+      internalID: 7085713749743312568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_19
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 24
+        width: 54
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b88ef457a86611380800000000000000
+      internalID: -9002301435277219701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_20
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 24
+        width: 49
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa88521d33785d40800000000000000
+      internalID: 5573331245008980728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_21
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 24
+        width: 53
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4013661c5ead889d0800000000000000
+      internalID: -2771724890319474428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: plinkohorse_22
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 24
+        width: 59
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a83e9c5257986a0800000000000000
+      internalID: -6446492586442782057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      plinkohorse_0: 2991569813404420829
+      plinkohorse_1: 7736839253154211380
+      plinkohorse_10: -6706307488764434088
+      plinkohorse_11: -3797549242168795254
+      plinkohorse_12: 2185885907235017242
+      plinkohorse_13: -8059087121877947535
+      plinkohorse_14: 2590277956031042154
+      plinkohorse_15: 3859373491785877686
+      plinkohorse_16: 2618441874115780952
+      plinkohorse_17: -1117583315712438513
+      plinkohorse_18: 7085713749743312568
+      plinkohorse_19: -9002301435277219701
+      plinkohorse_2: 995488371005151105
+      plinkohorse_20: 5573331245008980728
+      plinkohorse_21: -2771724890319474428
+      plinkohorse_22: -6446492586442782057
+      plinkohorse_3: -7127436225431147246
+      plinkohorse_4: 5221254274681231566
+      plinkohorse_5: 9172772215339786638
+      plinkohorse_6: 5178130099436640723
+      plinkohorse_7: -8234131602994785377
+      plinkohorse_8: 3120492476708370275
+      plinkohorse_9: 1266247770181129773
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

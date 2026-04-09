@@ -122,4 +122,14 @@ public class PlayerScore : MonoBehaviour
     {
         return Instance != null ? Instance.Score : fallbackScore;
     }
+
+    public static void ResetScore()
+    {
+        if (Instance != null)
+        {
+            Instance.SetTotal(0);
+        }
+
+        fallbackScore = 0;
+    }
 }

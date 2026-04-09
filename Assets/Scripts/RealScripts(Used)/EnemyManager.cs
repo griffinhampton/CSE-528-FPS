@@ -12,6 +12,10 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private bool facePlayerOnSpawn = true;
 	[SerializeField] private bool faceArenaCenterOnSpawn = true;
 	[SerializeField] private Transform arenaCenter;
+
+	[Header("Dead Body Cleanup")]
+	[SerializeField] private int maxDeadBodiesOnGround = 25;
+	[SerializeField] private float deadBodyCleanupIntervalSeconds = 1.0f;
 	
 	[Header("Spawn Safety")]
 	[SerializeField] private bool preventSpawnIfBlocked = true;
@@ -26,6 +30,9 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private float groundRayStartHeight = 5f;
 	[SerializeField] private float groundRayDistance = 50f;
 	[SerializeField] private float spawnYOffset = 0.25f;
+
+	private Queue<GameObject> _spawnedEnemies = new Queue<GameObject>();
+	private Coroutine _cleanupLoop;
 
 	private Coroutine _spawnLoop;
 
@@ -60,9 +67,24 @@ public class EnemyManager : MonoBehaviour
 
 		SpawnInitialEnemies(initialSpawnCount);
 
+		if (deadBodyCleanupIntervalSeconds > 0f)
+		{
+			_cleanupLoop = StartCoroutine(DeadBodyCleanupLoop());
+		}
+
 		if (spawnIntervalSeconds > 0f)
 		{
 			_spawnLoop = StartCoroutine(SpawnLoop());
+		}
+	}
+
+	private IEnumerator DeadBodyCleanupLoop()
+	{
+		var wait = new WaitForSeconds(deadBodyCleanupIntervalSeconds);
+		while (true)
+		{
+			yield return wait;
+			RemoveExcessDeadPigBodies();
 		}
 	}
 
@@ -166,6 +188,14 @@ public class EnemyManager : MonoBehaviour
 		}
 
 		GameObject enemyInstance = Instantiate(enemyPrefab, position, rotation);
+		_spawnedEnemies.Enqueue(enemyInstance);
+		RemoveExcessDeadPigBodies();
+
+		// Play a random Lynch clip once on death.
+		if (enemyInstance.GetComponent<PigDeathAudio>() == null)
+		{
+			enemyInstance.AddComponent<PigDeathAudio>();
+		}
 
 		// If the spawn point defines a path, pass it to the enemy AI.
 		EnemyPath path = spawnPoint.GetComponent<EnemyPath>();
@@ -189,6 +219,68 @@ public class EnemyManager : MonoBehaviour
 				ai.SetArenaCenter(arenaCenter);
 			}
 		}
+	}
+
+	private bool TryGetLiveAndLetDie(GameObject enemyRoot, out LiveAndLetDie live)
+	{
+		live = null;
+		if (enemyRoot == null) return false;
+		live = enemyRoot.GetComponent<LiveAndLetDie>();
+		if (live == null) live = enemyRoot.GetComponentInChildren<LiveAndLetDie>(true);
+		if (live == null) live = enemyRoot.GetComponentInParent<LiveAndLetDie>();
+		return live != null;
+	}
+
+	// Removes dead pig bodies if there are too many on the ground.
+	// Uses spawn order to always remove the oldest spawned dead pig first.
+	public void RemoveExcessDeadPigBodies()
+	{
+		int maxDead = Mathf.Max(0, maxDeadBodiesOnGround);
+		if (maxDead <= 0)
+		{
+			// If set to 0, remove all dead bodies.
+			maxDead = 0;
+		}
+
+		// Count how many dead bodies currently exist.
+		int deadCount = 0;
+		foreach (GameObject enemy in _spawnedEnemies)
+		{
+			if (enemy == null) continue;
+			if (TryGetLiveAndLetDie(enemy, out LiveAndLetDie live) && live != null && live.IsDead)
+			{
+				deadCount++;
+			}
+		}
+
+		if (deadCount <= maxDead)
+		{
+			return;
+		}
+
+		int toRemove = deadCount - maxDead;
+		if (toRemove <= 0) return;
+
+		// Rebuild the queue while destroying the oldest spawned dead pigs first.
+		Queue<GameObject> rebuilt = new Queue<GameObject>(_spawnedEnemies.Count);
+		int removed = 0;
+
+		while (_spawnedEnemies.Count > 0)
+		{
+			GameObject enemy = _spawnedEnemies.Dequeue();
+			if (enemy == null) continue;
+
+			if (removed < toRemove && TryGetLiveAndLetDie(enemy, out LiveAndLetDie live) && live != null && live.IsDead)
+			{
+				Destroy(enemy);
+				removed++;
+				continue;
+			}
+
+			rebuilt.Enqueue(enemy);
+		}
+
+		_spawnedEnemies = rebuilt;
 	}
 
 	private bool TryFindClearSpawnPosition(Transform spawnPoint, Vector3 basePosition, out Vector3 clearPosition)

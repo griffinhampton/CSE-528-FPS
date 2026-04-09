@@ -10,7 +10,15 @@ public class CollisionRealDetector : MonoBehaviour
     [SerializeField] private LiveAndLetDie liveAndLetDie;
     [SerializeField] private bool callDeathOnHit = true;
 
+    [Tooltip("If true, damages the player when this (alive) pig touches them.")]
+    [SerializeField] private bool damagePlayerOnHit = true;
+
+    [Tooltip("How much damage to apply when the player is touched.")]
+    [Min(0)]
+    [SerializeField] private int touchDamage = 1;
+
     private bool hasLogged;
+    private bool hasAppliedHit;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,27 +32,36 @@ public class CollisionRealDetector : MonoBehaviour
 
     private void TryLogHit(GameObject other, string eventName)
     {
-        if (logOnlyOnce && hasLogged) return;
+        if (other == null) return;
         if (!other.CompareTag(targetTag)) return;
+
+        // Cache LiveAndLetDie once, if needed.
+        if (liveAndLetDie == null)
+        {
+            liveAndLetDie = GetComponent<LiveAndLetDie>();
+            if (liveAndLetDie == null) liveAndLetDie = GetComponentInChildren<LiveAndLetDie>(true);
+            if (liveAndLetDie == null) liveAndLetDie = GetComponentInParent<LiveAndLetDie>();
+        }
+
+        // Only an ALIVE pig can apply the touch effect.
+        if (liveAndLetDie != null && liveAndLetDie.IsDead) return;
+
+        // Prevent multiple contacts from spamming damage/death.
+        if (hasAppliedHit) return;
+        hasAppliedHit = true;
+
+        if (logOnlyOnce && hasLogged) return;
 
         hasLogged = true;
         Debug.Log($"[CollisionRealDetector] {eventName} on '{gameObject.name}' (tagged '{targetTag}')", this);
 
+        if (damagePlayerOnHit && touchDamage > 0)
+        {
+            PlayerHealth.DamagePlayer(touchDamage, source: gameObject);
+        }
+
         if (callDeathOnHit)
         {
-            if (liveAndLetDie == null)
-            {
-                liveAndLetDie = GetComponent<LiveAndLetDie>();
-                if (liveAndLetDie == null)
-                {
-                    liveAndLetDie = GetComponentInChildren<LiveAndLetDie>(true);
-                }
-                if (liveAndLetDie == null)
-                {
-                    liveAndLetDie = GetComponentInParent<LiveAndLetDie>();
-                }
-            }
-
             if (liveAndLetDie != null)
             {
                 liveAndLetDie.Death();

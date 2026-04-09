@@ -14,20 +14,28 @@ public class PlayInputHandler : MonoBehaviour
     [SerializeField] private string look = "Look";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
+    [SerializeField] private string pause = "Pause";
 
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
+    private InputAction pauseAction;
 
     public Vector2 MoveInput { get; private set;}
     public Vector2 LookInput { get; private set;}
     public bool JumpTriggered { get; private set;}
     public float SprintValue {get; private set;}
+    public bool PauseTriggered { get; private set;}
 
     public void ResetJump()
     {
         JumpTriggered = false;
+    }
+
+    public void ResetPause()
+    {
+        PauseTriggered = false;
     }
 
     public static PlayInputHandler Instance { get; private set; }
@@ -49,6 +57,7 @@ public class PlayInputHandler : MonoBehaviour
         lookAction = playerControls.FindActionMap(actionMapName).FindAction(look);
         jumpAction = playerControls.FindActionMap(actionMapName).FindAction(jump);
         sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
+        pauseAction = playerControls.FindActionMap(actionMapName).FindAction(pause);
         RegisterInputActions();
     }
 
@@ -64,6 +73,11 @@ public class PlayInputHandler : MonoBehaviour
 
         sprintAction.performed += context => SprintValue = context.ReadValue<float>();
         sprintAction.canceled += context => SprintValue = 0.0f;
+
+        if (pauseAction != null)
+        {
+            pauseAction.performed += context => PauseTriggered = true;
+        }
     }
 
     private void OnEnable()
@@ -72,6 +86,10 @@ public class PlayInputHandler : MonoBehaviour
         lookAction.Enable();
         jumpAction.Enable();
         sprintAction.Enable();
+        if (pauseAction != null)
+        {
+            pauseAction.Enable();
+        }
     }
 
     private void OnDisable()
@@ -81,5 +99,9 @@ public class PlayInputHandler : MonoBehaviour
         lookAction.Disable();
         jumpAction.Disable();
         sprintAction.Disable();
+        if (pauseAction != null)
+        {
+            pauseAction.Disable();
+        }
     }
 }

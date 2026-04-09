@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class PigBlaster : MonoBehaviour
 {
     [Header("Projectile")]
@@ -13,7 +17,32 @@ public class PigBlaster : MonoBehaviour
     [SerializeField] private float fireCooldownSeconds = 0.15f;
     [SerializeField] private InputActionReference fireAction;
 
+    [Header("Audio")]
+    [Tooltip("Gunshot sound to play on fire. If empty, auto-loads Assets/General Assets/Audio/Lynch/gunshot.wav in the Unity Editor.")]
+    [SerializeField] private AudioClip gunshotClip;
+    [Range(0f, 1f)]
+    [SerializeField] private float gunshotVolume = 1f;
+
     private float nextFireTime;
+    private AudioSource audioSource;
+
+#if UNITY_EDITOR
+    private static AudioClip cachedEditorGunshot;
+#endif
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+
+        TryAutoPopulateGunshotInEditor();
+    }
 
     private void OnEnable()
     {
@@ -42,6 +71,14 @@ public class PigBlaster : MonoBehaviour
 
     private bool WasFirePressedThisFrame()
     {
+        if (PauseMenuUI.IsPaused) return false;
+
+        // Escape is reserved for pause; ignore it for firing even if bindings include it.
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            return false;
+        }
+
         if (fireAction != null)
         {
             return fireAction.action.WasPressedThisFrame();
@@ -52,6 +89,11 @@ public class PigBlaster : MonoBehaviour
 
     private void Fire()
     {
+        if (gunshotClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gunshotClip, Mathf.Clamp01(gunshotVolume));
+        }
+
         if (ballPrefab == null)
         {
             Debug.LogWarning("[PigBlaster] No ballPrefab assigned.", this);
@@ -86,5 +128,19 @@ public class PigBlaster : MonoBehaviour
 
         // Prevent immediately killing the shooter if the ball overlaps the player's hierarchy.
         hitScript.SetIgnoreRoot(transform.root);
+    }
+
+    private void TryAutoPopulateGunshotInEditor()
+    {
+        if (gunshotClip != null) return;
+
+#if UNITY_EDITOR
+        if (cachedEditorGunshot == null)
+        {
+            cachedEditorGunshot = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/General Assets/Audio/Lynch/gunshot.wav");
+        }
+
+        gunshotClip = cachedEditorGunshot;
+#endif
     }
 }
