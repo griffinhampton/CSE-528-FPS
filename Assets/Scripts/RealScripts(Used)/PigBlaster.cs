@@ -13,6 +13,11 @@ public class PigBlaster : MonoBehaviour
     [SerializeField] private float muzzleVelocity = 25f;
     [SerializeField] private float spawnForwardOffset = 0.5f;
 
+    [Header("Projectile Attachments")]
+    [Tooltip("Optional effect to attach to each spawned ball instance.")]
+    [SerializeField] private GameObject ballSplashPrefab;
+    [SerializeField] private Vector3 ballSplashLocalOffset = Vector3.zero;
+
     [Header("Firing")]
     [SerializeField] private float fireCooldownSeconds = 0.15f;
     [SerializeField] private InputActionReference fireAction;
@@ -42,7 +47,19 @@ public class PigBlaster : MonoBehaviour
         audioSource.loop = false;
 
         TryAutoPopulateGunshotInEditor();
+
+#if UNITY_EDITOR
+        TryAutoPopulateBallSplashInEditor();
+#endif
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        TryAutoPopulateGunshotInEditor();
+        TryAutoPopulateBallSplashInEditor();
+    }
+#endif
 
     private void OnEnable()
     {
@@ -109,6 +126,14 @@ public class PigBlaster : MonoBehaviour
         Vector3 spawnPos = origin.position + origin.forward * spawnForwardOffset;
         GameObject ballInstance = Instantiate(ballPrefab, spawnPos, origin.rotation);
 
+        if (ballSplashPrefab != null)
+        {
+            GameObject splashInstance = Instantiate(ballSplashPrefab, ballInstance.transform, false);
+            splashInstance.transform.localPosition = ballSplashLocalOffset;
+            splashInstance.transform.localRotation = Quaternion.identity;
+            splashInstance.transform.localScale = Vector3.one;
+        }
+
         if (ballInstance.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -143,4 +168,12 @@ public class PigBlaster : MonoBehaviour
         gunshotClip = cachedEditorGunshot;
 #endif
     }
+
+#if UNITY_EDITOR
+    private void TryAutoPopulateBallSplashInEditor()
+    {
+        if (ballSplashPrefab != null) return;
+        ballSplashPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/shader/Ripple + Water/Splash.prefab");
+    }
+#endif
 }

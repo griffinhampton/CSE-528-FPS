@@ -10,6 +10,13 @@ public class PauseMenuUI : MonoBehaviour
 
     private CanvasGroup rootCanvasGroup;
 
+    [Header("UI Interaction")]
+    [Tooltip("If true, forces any Animator components under the pause menu root to use UnscaledTime while paused (fixes Button Transition=Animation when Time.timeScale=0).")]
+    [SerializeField] private bool forceUIAnimatorsUnscaledWhilePaused = true;
+
+    private Animator[] rootAnimators;
+    private UnityEngine.UI.Selectable[] rootSelectables;
+
     [Header("Behavior")]
     [Tooltip("If true, sets Time.timeScale=0 while paused.")]
     [SerializeField] private bool freezeTimeWhilePaused = true;
@@ -25,6 +32,9 @@ public class PauseMenuUI : MonoBehaviour
 
     [Tooltip("If true, hides the pause menu on Awake.")]
     [SerializeField] private bool hideOnAwake = true;
+
+    [Tooltip("If true, fixes cases where the pause menu root is accidentally scaled to (0,0,0) in the scene (which makes it impossible to see/hover).")]
+    [SerializeField] private bool forceRootScaleOneWhenVisible = true;
 
     [Tooltip("If true, logs when pause is triggered (for debugging).")]
     [SerializeField] private bool debugLogs = false;
@@ -55,6 +65,17 @@ public class PauseMenuUI : MonoBehaviour
             SetRootVisible(false);
         }
 
+        if (forceRootScaleOneWhenVisible && root != null)
+        {
+            root.transform.localScale = Vector3.one;
+        }
+
+        rootAnimators = root != null ? root.GetComponentsInChildren<Animator>(true) : null;
+
+        // Ensure UI hover/press tint still animates when timeScale is frozen.
+        rootSelectables = root != null ? root.GetComponentsInChildren<UnityEngine.UI.Selectable>(true) : null;
+        EnsureUnscaledTintHelpers();
+
         IsPaused = false;
 
         if (freezeTimeWhilePaused)
@@ -68,9 +89,27 @@ public class PauseMenuUI : MonoBehaviour
         }
     }
 
+    private void EnsureUnscaledTintHelpers()
+    {
+        if (rootSelectables == null || rootSelectables.Length == 0) return;
+
+        for (int i = 0; i < rootSelectables.Length; i++)
+        {
+            UnityEngine.UI.Selectable s = rootSelectables[i];
+            if (s == null) continue;
+            if (s.GetComponent<UnscaledSelectableTint>() != null) continue;
+            s.gameObject.AddComponent<UnscaledSelectableTint>();
+        }
+    }
+
     private void SetRootVisible(bool visible)
     {
         if (root == null) return;
+
+        if (visible && forceRootScaleOneWhenVisible)
+        {
+            root.transform.localScale = Vector3.one;
+        }
 
         if (rootCanvasGroup != null)
         {
@@ -128,6 +167,8 @@ public class PauseMenuUI : MonoBehaviour
 
         SetRootVisible(true);
 
+        SetRootAnimatorsUseUnscaledTime(true);
+
         if (freezeTimeWhilePaused)
         {
             Time.timeScale = 0f;
@@ -147,6 +188,8 @@ public class PauseMenuUI : MonoBehaviour
 
         SetRootVisible(false);
 
+        SetRootAnimatorsUseUnscaledTime(false);
+
         if (freezeTimeWhilePaused)
         {
             Time.timeScale = 1f;
@@ -156,6 +199,20 @@ public class PauseMenuUI : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+    }
+
+    private void SetRootAnimatorsUseUnscaledTime(bool useUnscaled)
+    {
+        if (!forceUIAnimatorsUnscaledWhilePaused) return;
+        if (rootAnimators == null || rootAnimators.Length == 0) return;
+
+        AnimatorUpdateMode mode = useUnscaled ? AnimatorUpdateMode.UnscaledTime : AnimatorUpdateMode.Normal;
+        for (int i = 0; i < rootAnimators.Length; i++)
+        {
+            Animator a = rootAnimators[i];
+            if (a == null) continue;
+            a.updateMode = mode;
         }
     }
 

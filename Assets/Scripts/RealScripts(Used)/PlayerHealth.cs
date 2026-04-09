@@ -38,7 +38,22 @@ public class PlayerHealth : MonoBehaviour
 
     public static PlayerHealth Instance { get; private set; }
 
-    private static bool deathAllowed = true;
+    // Death allowed is global/static and persists across scene loads.
+    // Use a reference count so multiple systems can disable death safely.
+    private static int deathDisallowCount;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStaticState()
+    {
+        // Ensures correct behavior when Unity's "Enter Play Mode Options" disables Domain Reload.
+        Instance = null;
+        deathDisallowCount = 0;
+
+        fallbackInitialized = false;
+        fallbackDirty = false;
+        fallbackMaxHealth = 0;
+        fallbackHealth = 0;
+    }
 
     private static bool fallbackInitialized;
     private static bool fallbackDirty;
@@ -47,12 +62,23 @@ public class PlayerHealth : MonoBehaviour
 
     public static bool IsDeathAllowed()
     {
-        return deathAllowed;
+        return deathDisallowCount <= 0;
     }
 
     public static void SetDeathAllowed(bool allowed)
     {
-        deathAllowed = allowed;
+        deathDisallowCount = allowed ? 0 : 1;
+    }
+
+    public static void RequestDeathDisallowed()
+    {
+        deathDisallowCount++;
+    }
+
+    public static void ReleaseDeathDisallowed()
+    {
+        deathDisallowCount--;
+        if (deathDisallowCount < 0) deathDisallowCount = 0;
     }
 
     private static void EnsureFallbackInitialized()
@@ -72,6 +98,13 @@ public class PlayerHealth : MonoBehaviour
         }
 
         Instance = this;
+
+        // Ensure there's a default death outcome when death is allowed.
+        // EVIL mode suppresses the Died event, so this won't interfere there.
+        if (GetComponent<ReturnToMainMenuOnDeath>() == null)
+        {
+            gameObject.AddComponent<ReturnToMainMenuOnDeath>();
+        }
 
         EnsureFallbackInitialized();
 
@@ -120,7 +153,7 @@ public class PlayerHealth : MonoBehaviour
             maxHealth: maxHealth,
             source: source));
 
-        if (deathAllowed && !wasDead && currentHealth <= 0)
+        if (IsDeathAllowed() && !wasDead && currentHealth <= 0)
         {
             try
             {
@@ -204,7 +237,7 @@ public class PlayerHealth : MonoBehaviour
             maxHealth: fallbackMaxHealth,
             source: source));
 
-        if (deathAllowed && !wasDead && fallbackHealth <= 0)
+        if (IsDeathAllowed() && !wasDead && fallbackHealth <= 0)
         {
             try
             {

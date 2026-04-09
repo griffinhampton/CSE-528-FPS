@@ -13,6 +13,10 @@ public class EnemyManager : MonoBehaviour
 	[SerializeField] private bool faceArenaCenterOnSpawn = true;
 	[SerializeField] private Transform arenaCenter;
 
+	[Header("Spawn Attachments")]
+	[SerializeField] private GameObject splashPrefab;
+	[SerializeField] private Vector3 splashLocalOffset = Vector3.zero;
+
 	[Header("Dead Body Cleanup")]
 	[SerializeField] private int maxDeadBodiesOnGround = 25;
 	[SerializeField] private float deadBodyCleanupIntervalSeconds = 1.0f;
@@ -35,6 +39,17 @@ public class EnemyManager : MonoBehaviour
 	private Coroutine _cleanupLoop;
 
 	private Coroutine _spawnLoop;
+
+#if UNITY_EDITOR
+	private void OnValidate()
+	{
+		if (splashPrefab == null)
+		{
+			splashPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(
+				"Assets/shader/Ripple + Water/Splash.prefab");
+		}
+	}
+#endif
 
 	private Transform GetPlayerTransform()
 	{
@@ -190,6 +205,7 @@ public class EnemyManager : MonoBehaviour
 		GameObject enemyInstance = Instantiate(enemyPrefab, position, rotation);
 		_spawnedEnemies.Enqueue(enemyInstance);
 		RemoveExcessDeadPigBodies();
+		AttachSplash(enemyInstance);
 
 		// Play a random Lynch clip once on death.
 		if (enemyInstance.GetComponent<PigDeathAudio>() == null)
@@ -218,6 +234,28 @@ public class EnemyManager : MonoBehaviour
 			{
 				ai.SetArenaCenter(arenaCenter);
 			}
+		}
+	}
+
+	private void AttachSplash(GameObject enemyInstance)
+	{
+		if (enemyInstance == null) return;
+		if (splashPrefab == null) return;
+
+		Transform parent = enemyInstance.transform;
+		GameObject splashInstance = Instantiate(splashPrefab, parent, false);
+		splashInstance.transform.localPosition = splashLocalOffset;
+		splashInstance.transform.localRotation = Quaternion.identity;
+		splashInstance.transform.localScale = Vector3.one;
+
+		DestroyOnLiveAndLetDieDeath destroyOnDeath = splashInstance.GetComponent<DestroyOnLiveAndLetDieDeath>();
+		if (destroyOnDeath == null)
+		{
+			destroyOnDeath = splashInstance.AddComponent<DestroyOnLiveAndLetDieDeath>();
+		}
+		if (TryGetLiveAndLetDie(enemyInstance, out LiveAndLetDie live) && live != null)
+		{
+			destroyOnDeath.SetTarget(live);
 		}
 	}
 
