@@ -11,6 +11,11 @@ public class PlayerFootstepAudio : MonoBehaviour
     [Tooltip("If empty, this will try to auto-populate from Assets/General Assets/Audio/WalkSounds while in the Unity Editor.")]
     [SerializeField] private AudioClip[] walkClips;
 
+    public void SetClips(AudioClip[] clips)
+    {
+        walkClips = clips;
+    }
+
     [Header("Timing")]
     [Tooltip("Minimum time between steps while moving.")]
     [SerializeField] private float stepIntervalSeconds = 0.45f;

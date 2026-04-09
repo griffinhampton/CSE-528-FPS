@@ -21,6 +21,11 @@ public class PigDeathAudio : MonoBehaviour
     private LiveAndLetDie liveAndLetDie;
     private bool played;
 
+    public void SetClips(AudioClip[] clips)
+    {
+        lynchClips = clips;
+    }
+
 #if UNITY_EDITOR
     private static AudioClip[] cachedEditorLynchClips;
 #endif

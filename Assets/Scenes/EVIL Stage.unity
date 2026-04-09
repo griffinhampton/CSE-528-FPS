@@ -1448,7 +1448,17 @@ MonoBehaviour:
   arenaCenter: {fileID: 0}
   splashPrefab: {fileID: 3933169860816203249, guid: 40cbc365f9187d344a52dd8bab28227f, type: 3}
   splashLocalOffset: {x: 0, y: 0, z: 0}
-  maxDeadBodiesOnGround: 67
+  pigDeathClips:
+  - {fileID: 8300000, guid: f36dbffafb5800c41a2b28f92e81cf6a, type: 3}
+  - {fileID: 8300000, guid: 379bf27de8fbf6341a97071838990fe4, type: 3}
+  - {fileID: 8300000, guid: 9b546f739be66ca49a4bd3235416402c, type: 3}
+  - {fileID: 8300000, guid: aa0c9dabf8c2b6d40a97de913f941ab2, type: 3}
+  - {fileID: 8300000, guid: 2434bace32408f444a615df7f5a86fff, type: 3}
+  - {fileID: 8300000, guid: 54a79524e0f06a74aae033ad70c247dd, type: 3}
+  - {fileID: 8300000, guid: e20d4d454f24f204c90b4719eae19aa5, type: 3}
+  - {fileID: 8300000, guid: 373d112c2f2815843bfdf4ffcf4a5e7c, type: 3}
+  - {fileID: 8300000, guid: 52902fdd3cbbd0947821685ea787e960, type: 3}
+  maxDeadBodiesOnGround: 200
   deadBodyCleanupIntervalSeconds: 1
   preventSpawnIfBlocked: 1
   spawnBlockMask:
@@ -2768,7 +2778,7 @@ MonoBehaviour:
   m_fontSize: 18
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3480,7 +3490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NegativeHealthTextTMP
   negativeHealthMessage: "You thought this would END? \n\nIt's OBVIOUSLY evil mode..."
-  clearWhenNotNegative: 1
+  clearWhenNotNegative: 0
   hideAfterSeconds: 10
 --- !u!114 &1432848612
 MonoBehaviour:
@@ -4038,6 +4048,11 @@ MonoBehaviour:
   upDownRange: 90
   pigTouchDamage: 1
   killPigAndDamageOnTouch: 1
+  footstepClips:
+  - {fileID: 8300000, guid: 4e3466074176cfd40ada91fa1006d181, type: 3}
+  - {fileID: 8300000, guid: 309e8354133d6fc4dbf4be67b614024c, type: 3}
+  - {fileID: 8300000, guid: 6c1bc3c34c46b884194043cd940e0ee4, type: 3}
+  - {fileID: 8300000, guid: 338399cc58dfb2a49a11a80821c17fd0, type: 3}
 --- !u!143 &1926079773
 CharacterController:
   m_ObjectHideFlags: 0

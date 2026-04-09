@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class EnemyManager : MonoBehaviour 
 {
 	[SerializeField] private GameObject enemyPrefab;
@@ -16,6 +20,10 @@ public class EnemyManager : MonoBehaviour
 	[Header("Spawn Attachments")]
 	[SerializeField] private GameObject splashPrefab;
 	[SerializeField] private Vector3 splashLocalOffset = Vector3.zero;
+
+	[Header("Spawn Audio")]
+	[Tooltip("Pig death clips to use in builds. Auto-populates in the Editor from Assets/General Assets/Audio/Lynch.")]
+	[SerializeField] private AudioClip[] pigDeathClips;
 
 	[Header("Dead Body Cleanup")]
 	[SerializeField] private int maxDeadBodiesOnGround = 25;
@@ -47,6 +55,24 @@ public class EnemyManager : MonoBehaviour
 		{
 			splashPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(
 				"Assets/shader/Ripple + Water/Splash.prefab");
+		}
+
+		if (pigDeathClips == null || pigDeathClips.Length == 0)
+		{
+			string[] guids = AssetDatabase.FindAssets("t:AudioClip", new[] { "Assets/General Assets/Audio/Lynch" });
+			if (guids != null && guids.Length > 0)
+			{
+				pigDeathClips = new AudioClip[guids.Length];
+				for (int i = 0; i < guids.Length; i++)
+				{
+					string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+					pigDeathClips[i] = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+				}
+			}
+			else
+			{
+				pigDeathClips = System.Array.Empty<AudioClip>();
+			}
 		}
 	}
 #endif
@@ -208,9 +234,14 @@ public class EnemyManager : MonoBehaviour
 		AttachSplash(enemyInstance);
 
 		// Play a random Lynch clip once on death.
-		if (enemyInstance.GetComponent<PigDeathAudio>() == null)
+		PigDeathAudio deathAudio = enemyInstance.GetComponent<PigDeathAudio>();
+		if (deathAudio == null)
 		{
-			enemyInstance.AddComponent<PigDeathAudio>();
+			deathAudio = enemyInstance.AddComponent<PigDeathAudio>();
+		}
+		if (deathAudio != null && pigDeathClips != null && pigDeathClips.Length > 0)
+		{
+			deathAudio.SetClips(pigDeathClips);
 		}
 
 		// If the spawn point defines a path, pass it to the enemy AI.

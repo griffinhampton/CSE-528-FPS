@@ -2,6 +2,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class FPSController : MonoBehaviour
 {
     [Header("Movement Speeds")]
@@ -24,6 +28,10 @@ public class FPSController : MonoBehaviour
     [Tooltip("If true, touching an alive pig will kill it (ragdoll) and apply damage to the player.")]
     [SerializeField] private bool killPigAndDamageOnTouch = true;
 
+    [Header("Audio")]
+    [Tooltip("Footstep clips to use in builds. Auto-populates in the Editor from Assets/General Assets/Audio/WalkSounds.")]
+    [SerializeField] private AudioClip[] footstepClips;
+
     private CharacterController characterController;
     private Camera mainCamera;
     private PlayInputHandler inputHandler;
@@ -38,13 +46,41 @@ public class FPSController : MonoBehaviour
         layerMask = LayerMask.GetMask("Default"); 
     }
 
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (footstepClips != null && footstepClips.Length > 0) return;
+
+        string[] guids = AssetDatabase.FindAssets("t:AudioClip", new[] { "Assets/General Assets/Audio/WalkSounds" });
+        if (guids != null && guids.Length > 0)
+        {
+            footstepClips = new AudioClip[guids.Length];
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                footstepClips[i] = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+            }
+        }
+        else
+        {
+            footstepClips = System.Array.Empty<AudioClip>();
+        }
+    }
+#endif
+
     private void Start()
     {
         inputHandler = PlayInputHandler.Instance;
 
-        if (GetComponent<PlayerFootstepAudio>() == null)
+        PlayerFootstepAudio steps = GetComponent<PlayerFootstepAudio>();
+        if (steps == null)
         {
-            gameObject.AddComponent<PlayerFootstepAudio>();
+            steps = gameObject.AddComponent<PlayerFootstepAudio>();
+        }
+
+        if (steps != null && footstepClips != null && footstepClips.Length > 0)
+        {
+            steps.SetClips(footstepClips);
         }
     }
 
