@@ -21,15 +21,12 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float upDownRange = 90.0f;
 
     [Header("Health")]
-    [Tooltip("Damage the player takes when touching an alive pig.")]
     [Min(0)]
     [SerializeField] private int pigTouchDamage = 1;
 
-    [Tooltip("If true, touching an alive pig will kill it (ragdoll) and apply damage to the player.")]
-    [SerializeField] private bool killPigAndDamageOnTouch = true;
+    [SerializeField]private bool killPigAndDamageOnTouch = true;
 
     [Header("Audio")]
-    [Tooltip("Footstep clips to use in builds. Auto-populates in the Editor from Assets/General Assets/Audio/WalkSounds.")]
     [SerializeField] private AudioClip[] footstepClips;
 
     private CharacterController characterController;

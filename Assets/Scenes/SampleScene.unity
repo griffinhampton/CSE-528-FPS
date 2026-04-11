@@ -198,27 +198,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.26
+      value: 1.959
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0558618
+      value: 0.924
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.98978454
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.14257178
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -226,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 16.393
       objectReference: {fileID: 0}
     - target: {fileID: 8879530484301550851, guid: cc2682d1ba80aeb4cb0ac892afc868cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -640,7 +640,7 @@ Transform:
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: -1.742}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1000,7 +1000,7 @@ Transform:
   m_GameObject: {fileID: 1194327420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.98, z: 0}
+  m_LocalPosition: {x: 0, y: 2.98, z: -2.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1026,6 +1026,13 @@ MonoBehaviour:
   gravity: 9.81
   mouseSensitivity: 2
   upDownRange: 90
+  pigTouchDamage: 1
+  killPigAndDamageOnTouch: 1
+  footstepClips:
+  - {fileID: 8300000, guid: 4e3466074176cfd40ada91fa1006d181, type: 3}
+  - {fileID: 8300000, guid: 309e8354133d6fc4dbf4be67b614024c, type: 3}
+  - {fileID: 8300000, guid: 6c1bc3c34c46b884194043cd940e0ee4, type: 3}
+  - {fileID: 8300000, guid: 338399cc58dfb2a49a11a80821c17fd0, type: 3}
 --- !u!143 &1194327424
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1129,8 +1136,12 @@ MonoBehaviour:
   shootOrigin: {fileID: 169400634}
   muzzleVelocity: 25
   spawnForwardOffset: 0.5
+  ballSplashPrefab: {fileID: 3933169860816203249, guid: 40cbc365f9187d344a52dd8bab28227f, type: 3}
+  ballSplashLocalOffset: {x: 0, y: 0, z: 0}
   fireCooldownSeconds: 0.15
   fireAction: {fileID: 3664334773220337520, guid: e607ba0004b44274b9feaa7930e668cc, type: 3}
+  gunshotClip: {fileID: 8300000, guid: f36dbffafb5800c41a2b28f92e81cf6a, type: 3}
+  gunshotVolume: 1
 --- !u!1001 &1253021403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1304,31 +1315,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0014727041
+      value: 0.215
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.01
+      value: 2.354
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1715245
+      value: 1.008
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99554044
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.09433553
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1336,7 +1347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 10.826
       objectReference: {fileID: 0}
     - target: {fileID: 1460309377705882573, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1415,6 +1426,7 @@ MonoBehaviour:
   look: Look
   jump: Jump
   sprint: Sprint
+  pause: Pause
 --- !u!4 &1933235331
 Transform:
   m_ObjectHideFlags: 0
@@ -1460,6 +1472,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   enemyPrefab: {fileID: 2238252768548940151, guid: 2a68319f645a14e478d0bc99ac6aebeb, type: 3}
+  spawnPoints: []
+  initialSpawnCount: 6
+  spawnIntervalSeconds: 3
+  randomYawOnSpawn: 1
+  facePlayerOnSpawn: 1
+  faceArenaCenterOnSpawn: 1
+  arenaCenter: {fileID: 0}
+  splashPrefab: {fileID: 3933169860816203249, guid: 40cbc365f9187d344a52dd8bab28227f, type: 3}
+  splashLocalOffset: {x: 0, y: 0, z: 0}
+  pigDeathClips:
+  - {fileID: 8300000, guid: f36dbffafb5800c41a2b28f92e81cf6a, type: 3}
+  - {fileID: 8300000, guid: 379bf27de8fbf6341a97071838990fe4, type: 3}
+  - {fileID: 8300000, guid: 9b546f739be66ca49a4bd3235416402c, type: 3}
+  - {fileID: 8300000, guid: aa0c9dabf8c2b6d40a97de913f941ab2, type: 3}
+  - {fileID: 8300000, guid: 2434bace32408f444a615df7f5a86fff, type: 3}
+  - {fileID: 8300000, guid: 54a79524e0f06a74aae033ad70c247dd, type: 3}
+  - {fileID: 8300000, guid: e20d4d454f24f204c90b4719eae19aa5, type: 3}
+  - {fileID: 8300000, guid: 373d112c2f2815843bfdf4ffcf4a5e7c, type: 3}
+  - {fileID: 8300000, guid: 52902fdd3cbbd0947821685ea787e960, type: 3}
+  maxDeadBodiesOnGround: 25
+  deadBodyCleanupIntervalSeconds: 1
+  preventSpawnIfBlocked: 1
+  spawnBlockMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  spawnClearRadius: 0.6
+  spawnNudgeAttempts: 8
+  spawnNudgeStep: 0.75
+  playerTag: Player
+  playerTransform: {fileID: 0}
+  snapToGround: 1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundRayStartHeight: 5
+  groundRayDistance: 50
+  spawnYOffset: 0.25
 --- !u!4 &1951335641
 Transform:
   m_ObjectHideFlags: 0

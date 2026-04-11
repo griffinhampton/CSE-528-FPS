@@ -4,21 +4,17 @@ using System.Collections.Generic;
 public class LiveAndLetDie : MonoBehaviour
 {
     [Header("Ragdoll")]
-    [Tooltip("Optional: assign the root transform of the ragdoll (Armature). If null, uses this GameObject.")]
     [SerializeField] private Transform ragdollRoot;
 
-    [Tooltip("Optional: Rigidbody to exclude from ragdoll freezing (usually the enemy root Rigidbody used for movement/gravity). If null, auto-detects on this GameObject.")]
     [SerializeField] private Rigidbody excludeRigidbody;
 
     [Header("Colliders")]
-    [Tooltip("If true, ragdoll colliders stay enabled while alive (bones remain kinematic). Useful if you want accurate hitboxes instead of a big parent collider.")]
     [SerializeField] private bool enableRagdollCollidersWhileAlive = false;
 
     [Tooltip("Colliders used while alive (typically the big parent capsule/box). These will be disabled on Death(). If empty, will be auto-detected.")]
     [SerializeField] private Collider[] aliveColliders;
 
     [Header("Joints")]
-    [Tooltip("Disable ragdoll joints while alive so kinematic bones cannot constrain/hold up the main body. Joints are re-enabled on Death().")]
     [SerializeField] private bool disableRagdollJointsWhileAlive = true;
 
     private Rigidbody[] bones;

@@ -114,6 +114,8 @@ public class PlayerScore : MonoBehaviour
             // but make them visible during development.
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogException(ex);
+#else
+            _ = ex;
 #endif
         }
     }

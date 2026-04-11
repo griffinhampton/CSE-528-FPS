@@ -163,6 +163,8 @@ public class PlayerHealth : MonoBehaviour
             {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
                 Debug.LogException(ex);
+#else
+                _ = ex;
 #endif
             }
         }
@@ -247,6 +249,8 @@ public class PlayerHealth : MonoBehaviour
             {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
                 Debug.LogException(ex);
+#else
+                _ = ex;
 #endif
             }
         }
@@ -309,6 +313,8 @@ public class PlayerHealth : MonoBehaviour
         {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogException(ex);
+#else
+            _ = ex;
 #endif
         }
     }
